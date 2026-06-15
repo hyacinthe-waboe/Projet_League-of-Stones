@@ -1,62 +1,79 @@
-# League of Stones
+<h1 align="center">🃏 League of Stones</h1>
 
-Jeu de cartes multijoueur au tour par tour inspiré de Hearthstone et de l'univers de League of Legends.
+<p align="center">
+  <strong>Construisez votre deck, trouvez un adversaire et prenez le contrôle du plateau.</strong>
+</p>
 
-Le projet a été réalisé en groupe pendant la Licence 3 MIASHS à l'Université Toulouse - Jean Jaurès. Ce dépôt réunit le frontend développé avec Next.js et le backend Express/MongoDB utilisé par l'application.
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js">
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React">
+  <img src="https://img.shields.io/badge/Zustand-443E38?style=for-the-badge" alt="Zustand">
+  <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express">
+  <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB">
+</p>
 
-## Fonctionnalités
+## 🎮 Le jeu
 
-- inscription, connexion et gestion du profil ;
-- collection de champions et construction d'un deck de 20 cartes ;
-- trois emplacements de sauvegarde locale pour les decks ;
-- file d'attente, défis et matchmaking entre deux joueurs ;
-- plateau de jeu avec pioche, pose de cartes et attaques ;
-- gestion des tours, des points de vie et de la fin de partie ;
-- interface responsive pour ordinateur et mobile.
+League of Stones est un jeu de cartes multijoueur au tour par tour inspiré de Hearthstone et de l'univers de League of Legends.
 
-## Règles principales
+Deux joueurs s'affrontent avec leur propre deck de champions. Il faut gérer sa main, poser les bonnes cartes, attaquer au bon moment et faire tomber les **150 points de vie** de l'adversaire.
 
-- chaque joueur commence avec 150 points de vie et quatre cartes ;
-- un deck contient exactement 20 cartes ;
-- le plateau accepte au maximum cinq cartes ;
-- une carte posée doit attendre le tour suivant avant d'attaquer ;
-- chaque carte peut attaquer une fois par tour ;
-- si le plateau adverse est vide, le joueur peut être attaqué directement.
+Ce projet a été réalisé en groupe pendant la **Licence 3 MIASHS** à l'Université Toulouse - Jean Jaurès.
 
-## Technologies
+## ✨ Fonctionnalités
+
+- 🔐 inscription, connexion et gestion du profil ;
+- 🦸 collection de champions ;
+- 🧩 création d'un deck de exactement 20 cartes ;
+- 💾 trois emplacements de sauvegarde locale ;
+- 🔎 file d'attente et recherche d'adversaires ;
+- ⚔️ envoi et acceptation de défis ;
+- 🎴 pioche, pose de cartes et attaques ;
+- ❤️ gestion des points de vie et de la fin de partie ;
+- 📱 interface adaptée aux ordinateurs et aux mobiles.
+
+## 📜 Règles principales
+
+| Élément | Règle |
+|---|---|
+| Points de vie | 150 par joueur |
+| Main de départ | 4 cartes |
+| Deck | Exactement 20 cartes |
+| Plateau | 5 cartes maximum |
+| Attaque | Une fois par carte et par tour |
+| Nouvelle carte | Doit attendre le tour suivant |
+| Attaque directe | Possible si le plateau adverse est vide |
+
+## 🧱 Architecture
+
+```text
+.
+├── leagueofront/       # Application Next.js
+│   └── src/
+│       ├── components/ # Composants partagés
+│       ├── pages/      # Écrans du jeu
+│       ├── services/   # Appels au backend
+│       ├── store/      # État Zustand
+│       └── styles/     # CSS Modules
+├── League-Of-Stones/   # Serveur Express et MongoDB
+└── Documentation/      # Conception et suivi du projet
+```
+
+## 🛠️ Technologies
 
 | Partie | Technologies |
 |---|---|
 | Frontend | Next.js 16, React 19, CSS Modules |
 | État client | Zustand et `localStorage` |
 | Communication | API HTTP avec `fetch` |
-| Backend | Node.js, Express |
+| Backend | Node.js et Express |
 | Données | MongoDB |
 
-## Structure
+## 🚀 Lancer une partie en local
 
-```text
-.
-├── leagueofront/       # Application Next.js
-│   └── src/
-│       ├── components/
-│       ├── pages/
-│       ├── services/
-│       ├── store/
-│       └── styles/
-├── League-Of-Stones/   # Serveur Express et accès MongoDB
-└── Documentation/      # Documents de conception et de suivi
-```
+### 1. Démarrer le backend
 
-## Installation
-
-Prérequis :
-
-- Node.js 18 ou plus récent ;
-- npm ;
-- MongoDB en fonctionnement sur la machine.
-
-### Backend
+MongoDB doit être lancé sur la machine.
 
 ```bash
 cd League-Of-Stones
@@ -66,7 +83,7 @@ npm start
 
 Le serveur écoute sur `http://localhost:3001`.
 
-### Frontend
+### 2. Démarrer le frontend
 
 Dans un second terminal :
 
@@ -76,26 +93,28 @@ npm install
 npm run dev
 ```
 
-L'application est alors disponible sur `http://localhost:3000`.
+Ouvrir ensuite `http://localhost:3000`.
 
-## Fonctionnement technique
+## ⚙️ Fonctionnement technique
 
-Après l'authentification, le frontend conserve la session dans son store Zustand et dans `localStorage`. Les écrans de matchmaking et de partie interrogent régulièrement le backend pour obtenir l'état le plus récent.
+Après la connexion, le frontend conserve la session dans Zustand et `localStorage`. Le matchmaking se rafraîchit périodiquement pour découvrir les joueurs disponibles, puis l'écran de partie interroge régulièrement le backend afin d'afficher le nouvel état du match.
 
-Les appels HTTP sont regroupés dans `leagueofront/src/services/api.js`. Le backend fourni avec le projet expose les routes liées aux utilisateurs, aux cartes, au matchmaking et aux matchs.
+Les appels HTTP sont centralisés dans `leagueofront/src/services/api.js`. Le backend expose les routes nécessaires aux utilisateurs, aux cartes, au matchmaking et aux combats.
 
-## Limites actuelles
+## 🚧 Limites actuelles
 
-- l'adresse du backend est fixée à `http://localhost:3001` dans le frontend ;
+- l'adresse du backend est fixée à `http://localhost:3001` ;
 - MongoDB doit être lancé séparément ;
-- le matchmaking et la partie reposent sur du polling ;
+- le matchmaking et les parties utilisent du polling ;
 - aucune suite de tests automatisés n'est configurée ;
-- le backend utilise des dépendances anciennes et doit être considéré comme un serveur pédagogique local.
+- le backend possède des dépendances anciennes et reste destiné à un usage pédagogique local.
 
-## Équipe
+## 👥 Équipe
 
 - Olti Mjeku
 - Asmae Zaloufi
 - Mohammed-Ali Chabana
 - Karim Saïd
 - Hyacinthe Waboe
+
+<p align="center"><em>Un projet de groupe où développement web et stratégie de jeu se rencontrent. ⚔️</em></p>

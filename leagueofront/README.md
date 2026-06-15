@@ -1,25 +1,36 @@
-# Frontend League of Stones
+# 🖥️ Frontend League of Stones
 
-Interface Next.js du jeu League of Stones.
+Interface Next.js du jeu **League of Stones** : authentification, collection, création de decks, matchmaking et plateau de jeu.
 
-## Lancement
+![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs)
+![React](https://img.shields.io/badge/React-19-20232A?logo=react)
+![Zustand](https://img.shields.io/badge/État-Zustand-443E38)
 
-Le backend doit d'abord être lancé sur `http://localhost:3001`.
+## 🚀 Lancement
+
+Le backend doit d'abord fonctionner sur `http://localhost:3001`.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Ouvrir ensuite `http://localhost:3000`.
+L'interface est disponible sur `http://localhost:3000`.
 
-## Commandes
+## 🧰 Commandes
 
-```bash
-npm run dev
-npm run build
-npm run start
-npm run lint
-```
+| Commande | Utilité |
+|---|---|
+| `npm run dev` | Lancer le serveur de développement |
+| `npm run build` | Construire la version de production |
+| `npm run start` | Lancer la version construite |
+| `npm run lint` | Vérifier le code |
 
-Le code de l'interface se trouve dans `src/`. Les appels au backend sont regroupés dans `src/services/api.js` et l'état d'authentification est géré avec Zustand dans `src/store/authStore.js`.
+## 📂 Repères
+
+- `src/pages/` : écrans de l'application ;
+- `src/services/api.js` : appels HTTP ;
+- `src/store/authStore.js` : session utilisateur avec Zustand ;
+- `src/styles/` : styles globaux et CSS Modules.
+
+> Le README principal du dépôt présente les règles du jeu et le lancement complet.
